@@ -6,7 +6,8 @@ import { HomeComponent } from './home.component';
 
 const routes: Routes = [
    { path: '', redirectTo: '/home', pathMatch: 'full' },
-   { path: 'home', component: HomeComponent }
+   { path: 'home', component: HomeComponent },
+	{ path: 'masked-text-field', loadChildren: () => import('./plugin-demos/masked-text-field.module').then(m => m.MaskedTextFieldModule) }
 ];
 
 @NgModule({

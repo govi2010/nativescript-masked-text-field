@@ -1,0 +1,19 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" xmlns:mtf="@nativescript/masked-text-field"  navigatingTo="navigatingTo" class="page">
+  <Page.actionBar>
+    <ActionBar title="Demo" icon="" class="action-bar">
+    </ActionBar>
+  </Page.actionBar>
+
+  <StackLayout class="p-20">
+    <mtf:MaskedTextField
+      class="input input-border"
+      value="{{ value }}"
+      mask="{{ mask }}"
+      placeholder="{{ placeholder }}"
+      hint="Phone"
+      keyboardType="phone" />
+    <Label text="{{ value }}" />
+    <Button tap="changePlaceholder" text="Change Placeholder"  />
+    <Button tap="changeMask" text="Change Mask" />
+  </StackLayout>
+</Page>

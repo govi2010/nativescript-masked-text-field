@@ -1,0 +1,73 @@
+{
+  "name": "masked-text-field",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "packages/masked-text-field",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "options": {
+        "outputPath": "dist/packages/masked-text-field",
+        "tsConfig": "packages/masked-text-field/tsconfig.json",
+        "packageJson": "packages/masked-text-field/package.json",
+        "main": "packages/masked-text-field/index.d.ts",
+        "assets": [
+          "packages/masked-text-field/*.md",
+          "packages/masked-text-field/index.d.ts",
+          "LICENSE",
+          {
+            "glob": "**/*",
+            "input": "packages/masked-text-field/platforms/",
+            "output": "./platforms/"
+          }
+        ],
+        "dependsOn": [
+          {
+            "target": "build.all",
+            "projects": "dependencies"
+          }
+        ]
+      }
+    },
+    "build.all": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "node tools/scripts/build-finish.ts masked-text-field"
+        ],
+        "parallel": false
+      },
+      "outputs": [
+        "dist/packages/masked-text-field"
+      ],
+      "dependsOn": [
+        {
+          "target": "build.all",
+          "projects": "dependencies"
+        },
+        {
+          "target": "build",
+          "projects": "self"
+        }
+      ]
+    },
+    "focus": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "nx g @nativescript/plugin-tools:focus-packages masked-text-field"
+        ],
+        "parallel": false
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "packages/masked-text-field/**/*.ts"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

@@ -24,7 +24,7 @@ npm run setup
 npm start
 ```
 
-- @nativescript
+- [@nativescript/masked-text-field](packages/masked-text-field/README.md)
 
 # How to use?
 

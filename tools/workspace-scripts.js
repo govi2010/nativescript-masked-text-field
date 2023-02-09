@@ -61,7 +61,14 @@ module.exports = {
     // packages
     // build output is always in dist/packages
     '@nativescript': {
-      'build-all': {
+      // @nativescript/masked-text-field
+			'masked-text-field': {
+				build: {
+					script: 'nx run masked-text-field:build.all',
+					description: '@nativescript/masked-text-field: Build',
+				},
+			},
+			'build-all': {
         script: 'nx run-many --target=build.all --all',
         description: 'Build all packages',
       },
@@ -71,7 +78,11 @@ module.exports = {
       description: '_____________  Focus (VS Code supported)  _____________',
     },
     focus: {
-      reset: {
+      'masked-text-field': {
+				script: 'nx run masked-text-field:focus',
+				description: 'Focus on @nativescript/masked-text-field',
+			},
+			reset: {
         script: 'nx g @nativescript/plugin-tools:focus-packages',
         description: 'Reset Focus',
       },

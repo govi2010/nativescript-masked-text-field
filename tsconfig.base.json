@@ -9,7 +9,10 @@
     "noEmitHelpers": true,
     "target": "ES2020",
     "module": "ESNext",
-    "lib": ["ESNext", "dom"],
+    "lib": [
+      "ESNext",
+      "dom"
+    ],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
@@ -20,8 +23,19 @@
       }
     ],
     "paths": {
-      "@demo/shared": ["tools/demo/index.ts"]
+      "@demo/shared": [
+        "tools/demo/index.ts"
+      ],
+      "@nativescript/masked-text-field": [
+        "packages/masked-text-field/index.d.ts"
+      ],
+      "@nativescript/masked-text-field/angular": [
+        "packages/masked-text-field/angular/index.ts"
+      ]
     }
   },
-  "exclude": ["node_modules", "tmp"]
+  "exclude": [
+    "node_modules",
+    "tmp"
+  ]
 }
