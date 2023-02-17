@@ -26,5 +26,11 @@ export function changeMask() {
 
 
 export class DemoModel extends DemoSharedMaskedTextField {
+  changePlaceholder() {
+    changePlaceholder()
+  }
 
+  changeMask() {
+    changeMask()
+  }
 }

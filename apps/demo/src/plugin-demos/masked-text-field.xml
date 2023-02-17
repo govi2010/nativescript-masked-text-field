@@ -13,7 +13,7 @@
       hint="Phone"
       keyboardType="phone" />
     <Label text="{{ value }}" />
-    <Button tap="changePlaceholder" text="Change Placeholder"  />
-    <Button tap="changeMask" text="Change Mask" />
+    <Button tap="{{ changePlaceholder }}" text="Change Placeholder"  />
+    <Button tap="{{ changeMask }}" text="Change Mask" />
   </StackLayout>
 </Page>

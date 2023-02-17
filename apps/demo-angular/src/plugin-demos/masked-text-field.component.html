@@ -2,6 +2,12 @@
 <StackLayout class="p-20">
   <ScrollView class="h-full">
     <StackLayout>
+      <MaskedTextField
+        [text]="value"
+        [mask]="mask"
+        [placeholder]="placeholder"
+        hint="Phone"
+        keyboardType="phone"></MaskedTextField>
       <Button text="Test masked-text-field" (tap)="demoShared.testIt()" class="btn btn-primary"></Button>
     </StackLayout>
   </ScrollView>

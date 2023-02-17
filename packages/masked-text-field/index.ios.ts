@@ -24,7 +24,10 @@ export class MaskedTextField extends MaskedTextFieldBase {
 
   public initNativeView() {
     super.initNativeView(); // NOTE: This initializes this._delegate!
+    debugger;
     this._delegate = MaskedTextFieldDelegate.initWithOwnerAndDefaultImplementation(new WeakRef(this), this._delegate);
+    this.nativeViewProtected.delegate = this._delegate;
+    debugger;
   }
 
   public [textProperty.getDefault]() {
@@ -36,6 +39,7 @@ export class MaskedTextField extends MaskedTextFieldBase {
   }
 
   public _setMaskedText(value: string) {
+    debugger;
     const style = this.style;
 
     const dict = new Map<string, any>();
@@ -71,27 +75,33 @@ export class MaskedTextField extends MaskedTextFieldBase {
 
       result.setAttributesRange(dict as any, { location: 0, length: source.length });
       this.nativeView.attributedText = result;
+      this.ios.attributedText = result;
     }
     else {
       // Clear attributedText or text won't be affected.
       this.nativeView.attributedText = undefined;
+      this.ios.attributedText = undefined;
       this.nativeView.text = source;
+      this.ios.text = source;
     }
   }
 }
 
 @NativeClass()
-@ObjCClass(UITextFieldDelegate)
 class MaskedTextFieldDelegate extends NSObject implements UITextFieldDelegate {
+  public static ObjCProtocols = [UITextFieldDelegate];
+  private _owner: WeakRef<MaskedTextField>;
+  private _defaultImplementation: UITextFieldDelegate;
 
-  public static initWithOwnerAndDefaultImplementation(owner: WeakRef<MaskedTextField>, defaultImplementation: UITextFieldDelegate): MaskedTextFieldDelegate {
+  public static initWithOwnerAndDefaultImplementation(owner: WeakRef<MaskedTextField>, defaultImplementation: UITextFieldDelegate):
+    MaskedTextFieldDelegate {
     const delegate = MaskedTextFieldDelegate.new() as MaskedTextFieldDelegate;
     delegate._owner = owner;
     delegate._defaultImplementation = defaultImplementation;
     return delegate;
   }
-  private _owner: WeakRef<MaskedTextField>;
-  private _defaultImplementation: UITextFieldDelegate;
+
+
 
   public textFieldShouldBeginEditing(textField: UITextField): boolean {
     return this._defaultImplementation.textFieldShouldBeginEditing(textField);
